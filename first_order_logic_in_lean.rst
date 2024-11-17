@@ -488,7 +488,7 @@ Using the Existential Quantifier
 --------------------------------
 
 In Lean, you can type the existential quantifier, ``∃``, by writing ``\ex``.
-If you prefer you can use the ascii equivalent, ``Exists``.
+If you prefer you can use the ascii equivalent, ``exists``.
 The introduction rule is ``Exists.intro`` and requires two arguments:
 a term, and a proof that term satisfies the required property.
 
@@ -546,7 +546,7 @@ The following example uses both the introduction and the elimination rules for t
       have h3 : A y := And.left h2
       show ∃ x, A x from Exists.intro y h3)
 
-Notice the parentheses in the hypothesis; if we left them out, everything after the first ``∃ x`` would be included in the scope of that quantifier. From the hypothesis, we obtain a ``y`` that satisfies ``A y ∧ B y``, and hence ``A y`` in particular. So ``y`` is enough to witness the conclusion.
+Notice the parentheses in the hypothesis: if we left them out, everything after the first ``∃ x`` would be included in the scope of that quantifier. From the hypothesis, we obtain a ``y`` that satisfies ``A y ∧ B y``, and hence ``A y`` in particular. So ``y`` is enough to witness the conclusion.
 
 It is sometimes annoying to enclose the proof after an ``Exists.elim`` in parenthesis, as we did here with the ``fun ... show`` block. To avoid that, we can use a bit of syntax from the programming world, and use a dollar sign instead. In Lean, an expression ``f $ t`` means the same thing as ``f (t)``, with the advantage that we do not have to remember to close the parenthesis. With this gadget, we can write the proof above as follows:
 
@@ -1010,7 +1010,7 @@ If you put the cursor after the ``←h1``, Lean shows you the goal at that point
 The tactic ``rewrite`` can also be used for substituting along biconditionals.
 For example, if our goal were ``A ∧ B`` but we know that ``hAC : A ↔ C`` and
 ``C ∧ B``, then we could rewrite ``A`` for ``C`` using ``hAC``,
-changing out goal to ``C ∧ B``.
+changing our goal to ``C ∧ B``.
 
 .. code-block:: lean
 
@@ -1046,7 +1046,7 @@ We will see in the coming chapters that in ordinary mathematical proofs, one com
      \ldots &= t_4 \\
      \ldots &= t_5.
 
-Lean has a mechanism to model such calculational proofs. Whenever a proof of an equation is expected, you can provide a proof using the identifier ``calc``, following by a chain of equalities and justification, in the following form:
+Lean has a mechanism to model such calculational proofs. Whenever a proof of an equation is expected, you can provide a proof using the identifier ``calc``, following by a chain of equalities and justifications, in the following form:
 
 .. code-block:: text
 
@@ -1056,7 +1056,7 @@ Lean has a mechanism to model such calculational proofs. Whenever a proof of an 
        _ = e4 := justification 3
        _ = e5 := justification 4
 
-The chain can go on as long as needed, and in this example the result is a proof of ``e1 = e5``. Each justification is the name of the assumption or theorem that is used. For example, the previous proof could be written as follows:
+The chain can go on as long as needed, and in this example the result is a proof of ``e1 = e5``. Each justification is a proof of the step. For example, the previous proof could be written as follows, where ``Eq.symm h1`` justifies ``x = y`` and ``h2`` justifies ``y = z``:
 
 .. code-block:: lean
 
@@ -1071,12 +1071,8 @@ The chain can go on as long as needed, and in this example the result is a proof
       _ = z := h2
     -- END
 
-As usual, the syntax is finicky; notice that there are no commas in the
-``calc`` expression,
-and the ``:=`` and underscores must be in the correct form.
-It is also sensitive to whitespace
-All that varies are the expressions ``e1, e2, e3, ...``
-and the justifications themselves.
+As usual, the syntax is finicky: notice that there are no commas in the
+``calc`` expression, and the ``:=`` and underscores must be in the correct form. It is also sensitive to whitespace. All that varies between steps are the expressions on the right-hand-side of the operator ``e1, e2, e3, ...`` and the justifications themselves.
 
 The ``calc`` environment is most powerful when used in conjunction with ``rewrite``,
 since we can then rewrite expressions with facts from the library. For example, Lean's library has a number of basic identities for the integers, such as these:
