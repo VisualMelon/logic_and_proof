@@ -84,7 +84,7 @@ Subtracting :math:`m' + n'` from both sides, we get :math:`m + n'' = n + m''`, w
 
 ----
 
-We can now define the integers to be :math:`\mathbb{N} \times \mathbb{N} / \mathord{\equiv}`. How should we define addition? If :math:`[(m, n)]` represents :math:`m - n`, and :math:`[(u, v)]` represents :math:`u - v`, then :math:`[(m, n)] + [(u, v)]` should represent :math:`(m + u) - (n + v)`. Thus, it makes sense to define :math:`[(m, n)] + [(u, v)]` to be :math:`[(m + u), (n + v)]`. For this to work, we need to know that the operation which sends :math:`(m, n)` and :math:`(u, v)` to :math:`(m + u, n + v)` respects the equivalence relation.
+We can now define the integers to be :math:`\mathbb{N} \times \mathbb{N} / \mathord{\equiv}`. How should we define addition? If :math:`[(m, n)]` represents :math:`m - n`, and :math:`[(u, v)]` represents :math:`u - v`, then :math:`[(m, n)] + [(u, v)]` should represent :math:`(m + u) - (n + v)`. Thus, it makes sense to define :math:`[(m, n)] + [(u, v)]` to be :math:`[(m + u) - (n + v)]`. For this to work, we need to know that the operation which sends :math:`(m, n)` and :math:`(u, v)` to :math:`(m + u, n + v)` respects the equivalence relation.
 
 ----
 
